@@ -15,7 +15,7 @@ class CoroutinesManager {
      * This is a scope for all coroutines
      * that will be dispatched in a Thread Pool
      */
-    val ioScope = CoroutineScope(Dispatchers.IO + supervisorJob )
+    val ioScope = CoroutineScope(Dispatchers.IO + job )
     /**
      * This is a scope for all coroutines
      * that will be dispatched in a Thread Pool

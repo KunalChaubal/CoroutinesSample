@@ -23,17 +23,17 @@ class FetchDetailsViewModel(
     fun tryAsyncNetworkCall() {
         Log.i(logTag, "-----Async network calls without error handling-----")
         coroutinesManager.ioScope.launch {
-            var job: Job? = null
+            val job = ArrayList<Job>()
 
             Log.i(logTag, "Making 10 asynchronous network calls")
             for (i in 0..10) {
-                job = launch {
+                job.add(launch {
                     Log.i(logTag, "Network Call ID: $i")
                     fetchDetailsRepo.fetchDetails()
-                }
+                })
             }
 
-            job?.join()
+            job.joinAll()
             Log.i(logTag, "All Networks calls have completed executing")
         }
     }
